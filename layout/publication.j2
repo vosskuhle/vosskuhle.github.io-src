@@ -14,4 +14,18 @@
 {% block abstract -%}{%- endblock %}
 {%- endfilter %}
 
+{% if resource.meta.pdf or resource.meta.comment %}
+<div class="row clearfix">
+{% if resource.meta.pdf %}
+  <div class="two columns alpha">
+    <a href="{{ media_url(resource.meta.pdf) }}" class="button">Download <span class="acro">PDF</span></a>
+  </div>
+{% endif %}
+{% if resource.meta.comment %}
+  <div class="ten columns omega smaller">
+    {{ resource.meta.comment|markdown|typogrify }}
+  </div>
+{% endif %}
+</div>
+{% endif %}
 {% endblock main %}
