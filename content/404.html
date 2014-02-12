@@ -1,0 +1,13 @@
+---
+extends: base.j2
+title: Oops!
+description: Looks like the page you're after doesn't exist.
+---
+
+{% block main %}
+<div class="row clearfix">
+  <div class="twelve columns alpha">
+    <p>Looks like the page you’re after doesn’t exist. Let’s <a href="{{ content_url("index.html") }}">go home</a>…</p>
+  </div>
+</div>
+{% endblock main %}
