@@ -8,7 +8,13 @@
 {% block main %}
 {% if resource.meta.author %}<h5>{{ resource.meta.author|typogrify }}</h5>{% endif %}
 
-{{ resource.meta.citation|markdown|typogrify }}
+{% filter markdown|typogrify %}
+{{ resource.meta.citation }}
+{%- if resource.meta.doi -%}
+  <span class="acro">DOI:</span>&nbsp;<a href="http://dx.doi.org/{{ resource.meta.doi }}">{{ resource.meta.doi }}</a>.
+{%- endif -%}
+{% endfilter %}
+
 <hr>
 {% filter markdown|typogrify -%}
 {% block abstract -%}{%- endblock %}
