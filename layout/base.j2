@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+
+<head>
+{% block starthead %}{% endblock starthead %}
+  <meta charset="{{ resource.meta.charset }}">
+  <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+{% if resource.meta.description %}
+  <meta name="description" content="{{ resource.meta.description }}">
+{% endif %}
+  <meta name="author" content="{{ resource.meta.author }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+{% block css %}
+  <link href='http://fonts.googleapis.com/css?family=Raleway:500,700|Sorts+Mill+Goudy:400,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ media_url('css/style.css') }}">
+{% endblock css %}
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+{% block favicons %}
+  <link rel="shortcut icon" href="{{ media_url('img/favicon.ico?v=2') }}">
+  <link rel="apple-touch-icon" href="{{ media_url('img/apple-touch-icon.png') }}">
+{% endblock favicons %}
+{% block endhead %}{% endblock endhead %}
+</head>
+
+<body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+{% block content %}
+  <div class="container">
+{% block container %}
+    <div class="three columns sidebar">
+{% block nav %}
+      <nav>
+        <h3 id="logo">{{ author.name }}</h3>
+        <ul>
+{% from "macros.j2" import render_nav with context %}
+{{ render_nav(menu)|indent(10, true) }}
+{# clumsy workaround to prevent jinja2 from generating trailing whitespace #}
+{% macro additional_nav() %}{% block additional_nav %}{% endblock %}{% endmacro %}
+{% if additional_nav() %}{{ additional_nav()|indent(10, true) }}{% endif %}
+
+        </ul>
+      </nav>&nbsp;
+{% endblock nav %}
+    </div>
+    <div class="twelve columns offset-by-one content">
+      <header>
+        <h1>{{ resource.meta.title|typogrify }}</h1>
+      </header>
+      <hr class="large">
+      <div class="doc-section">
+{% filter indent(8, true) %}
+{% block main %}
+{% endblock main %}
+{% endfilter %}
+
+      </div>
+      <hr>
+      <footer>
+        <div class="eleven columns alpha">
+          <small>Created by <a href="{{ author.obfuscated_mailto }}">{{ author.name }}</a>. Powered by <a href="http://github.com/hyde/hyde">hyde</a> and <a href="http://www.getskeleton.com">Skeleton</a>. Last updated {{ resource.meta.modified.strftime('%Y-%m-%d') }}.</small>
+        </div>
+      </footer>
+    </div>
+{% endblock container %}
+  </div><!-- end of #container -->
+{% endblock content %}
+  <div class="bottom-space"></div>
+</body>
+</html>
+{% block newlineAtEof %}{% endblock %}

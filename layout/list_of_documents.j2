@@ -1,0 +1,11 @@
+<div class="doc-section">
+{% from "macros.j2" import permalink_heading %}
+  {{ permalink_heading("Other documents", "documents", "2") }}
+{% from "macros.j2" import render_document with context %}
+{% for res in site.content.node_from_relative_path("documents").walk_resources_sorted_by_time() %}
+{% filter indent(2, true) -%}
+  {{ render_document(res) }}
+{%- endfilter %}
+
+{% endfor %}
+</div>

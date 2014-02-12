@@ -1,0 +1,32 @@
+---
+extends: base.j2
+title: Personal website
+description: Personal homepage of Michel Voßkuhle
+portrait: "img/portrait_vosskuhle.jpg"
+---
+
+{% block main %}
+<div class="row clearfix">
+  <div class="eight columns alpha">
+{% filter markdown|typogrify|indent(4, true) %}
+#### In case you don't know me...
+
+My name is Michel Voßkuhle.
+I recently finished a PhD at the [École Normale Supérieure de Lyon](http://www.ens-lyon.eu/) under the supervision of [A.&nbsp;Pumir](http://perso.ens-lyon.fr/alain.pumir) and [E.&nbsp;Lévêque](http://perso.ens-lyon.fr/emmanuel.leveque).
+At the moment I am looking for new challenges.
+
+#### About this site
+
+On this website I provide information which I think someone entering my name in a search engine would be interested in.
+If you do not find what you are looking for, feel free to <a href="{{ author.obfuscated_mailto }}">send me an email</a> at <a href="{{ author.obfuscated_mailto }}">{{ author.obfuscated_email }}</a>.
+{% endfilter %}
+
+  </div>
+  <div class="four columns omega"><img src="{{ media_url(resource.meta.portrait) }}" alt="Portrait of {{ resource.meta.author }}" width="220"></div>
+</div>
+{% include "list_of_publications.j2" %}
+
+<hr>
+{% include "list_of_documents.j2" %}
+
+{% endblock main %}

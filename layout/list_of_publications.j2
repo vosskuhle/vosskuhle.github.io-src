@@ -1,0 +1,11 @@
+<div class="doc-section">
+{% from "macros.j2" import permalink_heading %}
+  {{ permalink_heading("Publications", "publications", "2") }}
+{% from "macros.j2" import render_citation with context %}
+{% for res in site.content.node_from_relative_path("publications").walk_resources_sorted_by_time() %}
+{% filter indent(2, true) -%}
+  {{ render_citation(res) }}
+{%- endfilter %}
+
+{% endfor %}
+</div>

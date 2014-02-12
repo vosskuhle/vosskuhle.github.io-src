@@ -1,0 +1,74 @@
+{% macro permalink_heading(title, id, level) -%}
+  <h{{ level }} id="{{ id }}">{{ title }}<a class="headerlink" href="#{{ id }}" title="Permalink to this section">¶</a></h{{ level }}>
+{%- endmacro %}
+
+{% macro render_nav(menu) %}
+{% if menu %}
+{% for item in menu %}
+<li>
+{% if item.url %}
+{% if item.anchor %}
+  <a href="{{ content_url(item.url) }}#{{ item.anchor }}">{{ item.name }}</a>
+{% else %}
+  <a href="{{ content_url(item.url) }}">{{ item.name }}</a>
+{% endif %}
+{% elif item.anchor %}
+  <a href="#{{ item.anchor }}">{{ item.name }}</a>
+{% endif %}
+</li>
+{% endfor %}
+{% endif %}
+{% endmacro %}
+
+{% macro render_additional_nav(res) %}
+<li class="time">
+{% filter indent(2, true) %}
+{% if res.prev_by_time -%}
+  <a href="{{ content_url(res.prev_by_time.url) }}">Previous</a>
+{%- else -%}
+  Previous
+{%- endif -%}
+  &nbsp;
+{%- if res.next_by_time -%}
+  <a href="{{ content_url(resource.next_by_time.url) }}">Next</a>
+{%- else -%}
+  Next
+{%- endif %}
+{% endfilter %}
+
+</li>
+{% endmacro %}
+
+{% macro render_citation(res) %}
+<div class="row clearfix list-of-docs">
+  <div class="eleven columns alpha">
+    {{ res.meta.author }}, &rdquo;<a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>&ldquo;.
+{% if res.meta.citation %}
+    {{ res.meta.citation|markdown|typogrify }}
+{% endif %}
+{% if res.meta.comment %}
+    <div class="smaller">{{ res.meta.comment|markdown|typogrify }}</div>
+{% endif %}
+  </div>
+  <div class="one columns omega">
+{% if res.meta.pdf %}
+    <a href="{{ media_url(res.meta.pdf) }}" class="acro">PDF</a>&nbsp;
+{% endif %}
+{% if res.meta.doi %}
+    <a href="http://dx.doi.org/{{ res.meta.doi }}" class="acro">DOI</a>&nbsp;
+{% elif res.meta.url %}
+    <a href="{{ res.meta.url }}" class="acro">URL</a>&nbsp;
+{% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro render_document(res) %}
+<div class="row clearfix list-of-docs">
+  <h5><a href="{{ content_url(res.url) }}">{{ res.meta.title|typogrify }}</a></h5>
+  <div class="half-bottom">
+    {{ res.meta.details|markdown|typogrify }}
+  </div>
+  <a href="{{ media_url(res.meta.file) }}" class="button">Download <code>{{ res.meta.version }}</code> <span class="smaller">[{{ res.meta.size|typogrify }}]</span></a>
+</div>
+{% endmacro %}

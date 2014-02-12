@@ -1,0 +1,33 @@
+/* preliminary color definitions */
+@gray-darker:            lighten(#000, 13.5%); // #222
+@gray-dark:              lighten(#000, 20%);   // #333
+@gray:                   lighten(#000, 33.5%); // #555
+@gray-light:             lighten(#000, 60%);   // #999
+@gray-lighter:           lighten(#000, 86.5%); // #eee
+
+/* main colors */
+@body-bg:                #fff;
+@text-color:             @gray-dark;
+@heading-color:          @gray-darker;
+
+/* theme colors */
+@theme-color-darker:     @gray-darker;
+@theme-color-dark:       @gray-dark;
+@theme-color:            @gray;
+@theme-color-light:      @gray-light;
+@theme-color-lighter:    @gray-lighter;
+
+/* settings for links */
+@link-color:             @text-color;
+@link-text-decoration:   underline;
+@link-hover-color:       @theme-color;
+
+/* font settings */
+@font-family-serif:      "Sorts Mill Goudy", "Georgia", "Times New Roman", serif;
+@font-family-sans-serif: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+/* import main style files */
+@import "include/base";
+@import "include/additional";
+@import "include/skeleton";
+@import "include/layout";

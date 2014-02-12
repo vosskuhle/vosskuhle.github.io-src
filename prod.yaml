@@ -1,0 +1,9 @@
+extends: site.yaml
+mode: production
+
+less:
+    args: {compress}
+
+#jinja2:
+#    extensions:
+#        - jinja2htmlcompress.HTMLCompress ## <https://github.com/mitsuhiko/jinja2-htmlcompress>

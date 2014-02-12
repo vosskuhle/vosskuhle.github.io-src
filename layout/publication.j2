@@ -1,0 +1,17 @@
+{% extends "base.j2" %}
+
+{% block additional_nav -%}
+{% from "macros.j2" import render_additional_nav with context %}
+{{ render_additional_nav(resource) }}
+{%- endblock %}
+
+{% block main %}
+{% if resource.meta.author %}<h5>{{ resource.meta.author|typogrify }}</h5>{% endif %}
+
+{{ resource.meta.citation|markdown|typogrify }}
+<hr>
+{% filter markdown|typogrify -%}
+{% block abstract -%}{%- endblock %}
+{%- endfilter %}
+
+{% endblock main %}

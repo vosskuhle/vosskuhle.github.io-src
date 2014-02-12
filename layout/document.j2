@@ -1,0 +1,19 @@
+{% extends "base.j2" %}
+
+{% block additional_nav -%}
+{% from "macros.j2" import render_additional_nav with context %}
+{{ render_additional_nav(resource) }}
+{%- endblock %}
+
+{% block main %}
+{{ resource.meta.details|markdown|typogrify }}
+<a href="{{ media_url(resource.meta.file) }}" class="button">Download <code>{{ resource.meta.version }}</code> <span class="smaller">[{{ resource.meta.size|typogrify }}]</span></a>
+<hr>
+{% from "macros.j2" import permalink_heading %}
+{{ permalink_heading("Abstract", "documents", "3") }}
+{% filter markdown|typogrify %}
+{% block abstract %}
+{% endblock %}
+{% endfilter %}
+
+{% endblock main %}
