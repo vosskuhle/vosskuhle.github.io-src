@@ -44,7 +44,7 @@ sorter:
         attr:
 #            - relative_path
             - meta.published
-        reverse: false
+        reverse: true
         filters:
             source.kind: html
             meta.listable: true
