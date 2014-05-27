@@ -42,7 +42,7 @@
 {% macro render_citation(res) %}
 <div class="row clearfix list-of-docs">
   <div class="eleven columns alpha">
-    {{ res.meta.author }}, &rdquo;<a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>&ldquo;.
+    {{ res.meta.author }}, &ldquo;<a href="{{ content_url(res.url) }}">{{ res.meta.title }}</a>&rdquo;.
 {% if res.meta.citation %}
     {{ res.meta.citation|markdown|typogrify }}
 {% endif %}
