@@ -38,10 +38,8 @@
         <ul>
 {% from "macros.j2" import render_nav with context %}
 {{ render_nav(menu)|indent(10, true) }}
-{# clumsy workaround to prevent jinja2 from generating trailing whitespace #}
-{% macro additional_nav() %}{% block additional_nav %}{% endblock %}{% endmacro %}
+{%- macro additional_nav() %}{% block additional_nav %}{% endblock %}{% endmacro %}
 {% if additional_nav() %}{{ additional_nav()|indent(10, true) }}{% endif %}
-
         </ul>
       </nav>&nbsp;
 {% endblock nav %}
@@ -56,7 +54,6 @@
 {% block main %}
 {% endblock main %}
 {% endfilter %}
-
       </div>
       <hr>
       <footer>

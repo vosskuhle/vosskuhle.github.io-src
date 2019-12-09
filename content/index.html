@@ -10,7 +10,8 @@ portrait: "img/portrait_vosskuhle.jpg"
 {% block main %}
 <div class="row clearfix">
   <div class="eight columns alpha">
-{% filter markdown|typogrify|indent(4, true) %}
+{% filter indent(4, true) %}
+{% filter markdown|typogrify %}
 #### In case you don't know me...
 
 My name is Michel Voßkuhle.
@@ -22,6 +23,7 @@ Our main customers are in the automotive industry.
 
 On this website I provide information which I think someone entering my name in a search engine would be interested in.
 If you do not find what you are looking for, feel free to <a href="{{ author.obfuscated_mailto }}">send me an email</a> at <a href="{{ author.obfuscated_mailto }}">{{ author.obfuscated_email }}</a>.
+{% endfilter %}
 {% endfilter %}
 
   </div>
