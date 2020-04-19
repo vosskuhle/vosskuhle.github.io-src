@@ -19,7 +19,7 @@ However, there is no current version available on [PyPi](https://pypi.org/).
 Therefore one must install directly from git via below command.
 Furthermore there is a tiny bug in upstream hyde.
 This has been fixed in a [fork](https://github.com/vosskuhle/hyde) and a pull request for this bugfix is pending.
-Until this is excepted, use the following command to install hyde
+Until this is accepted, use the following command to install hyde
 ```bash
 pip install -e git+https://github.com/vosskuhle/hyde.git#egg=hyde
 ```
