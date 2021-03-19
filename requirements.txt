@@ -1,7 +1,7 @@
 commando==1.0.0
 fswrap==1.0.0
 -e git+https://github.com/vosskuhle/hyde.git@558448af9ce0d7cd7eea7a9a62501c2df82fd8d3#egg=hyde
-Jinja2==2.10.3
+Jinja2==2.11.3
 Markdown==3.1.1
 MarkupSafe==1.1.1
 pkg-resources==0.0.0
